@@ -1,29 +1,29 @@
 module.exports = app => {
 
     //controllers
-    const controller = require("../../../controllers/grupo.controller.js");
+    const controller = require("../../../controllers/Data.controller.js");
 
     var router = require("express").Router();
 
-    // // Create a new Grupos
+    // // Create a new Datas
     router.post("/", controller.create);
 
     // Retrieve all controller
     router.get("/", controller.findAll);
 
-     // Retrieve a single Grupo with id
+     // Retrieve a single Data with id
      router.get("/:id", controller.findOne);
 
-     // Update a Grupo with id
+     // Update a Data with id
     router.put("/:id", controller.update);
 
-     // Delete a Grupo with id
+     // Delete a Data with id
      router.delete("/:id", controller.delete);
 
       // Delete all controller
     router.delete("/", controller.deleteAll);
 
-    app.use('/api/v1/grupo', router);
+    app.use('/api/v1/Data', router);
 
 
 };

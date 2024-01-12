@@ -21,5 +21,6 @@ db.sequelize = sequelize;
 
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.grupos = require("./grupo.model.js")(sequelize, Sequelize);
+db.discount = require("./discount.model.js")(sequelize, Sequelize);
 
 module.exports = db;

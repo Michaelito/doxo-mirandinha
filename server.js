@@ -42,6 +42,7 @@ db.sequelize.sync();
 // Load Routes
 require("./app/routes/api/v1/tutorial.routes")(app);
 require("./app/routes/api/v1/grupo.routes")(app);
+require("./app/routes/api/v1/discount.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
