@@ -1,7 +1,7 @@
 module.exports = app => {
 
     //controllers
-    const controller = require("../../../controllers/grupo.controller.js");
+    const controller = require("../../../controllers/group.controller.js");
 
     var router = require("express").Router();
 
@@ -23,7 +23,7 @@ module.exports = app => {
       // Delete all controller
     router.delete("/", controller.deleteAll);
 
-    app.use('/api/v1/Data', router);
+    app.use('/api/v1/group', router);
 
 
 };

@@ -1,6 +1,7 @@
 const db = require("../models");
 const Discount = db.discount;
 const Op = db.Sequelize.Op;
+const { uuid } = require('uuidv4');
 
 
 // Retrieve all from the database.
@@ -58,6 +59,7 @@ exports.create = (req, res) => {
 
     // Create a Data
     const discount = {
+        uuid: uuid(),
         code: req.body.coce,
         name: req.body.name,        
         discount: req.body.discount,        

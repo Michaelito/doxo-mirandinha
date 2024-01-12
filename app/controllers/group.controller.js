@@ -1,6 +1,7 @@
 const db = require("../models");
-const Grupo = db.grupos;
+const Group = db.grupos;
 const Op = db.Sequelize.Op;
+const { uuid } = require('uuidv4');
 
 // Create and Save a new Group
 exports.create = (req, res) => {
@@ -12,20 +13,21 @@ exports.create = (req, res) => {
         return;
     }
 
-    // Create a Group
-    const grupo = {
-        name: req.body.name,
-        description: req.body.description        
+    // Create a Data
+    const group = {
+        uuid: uuid(),
+        name: req.body.name,        
+        description: req.body.description
     };
 
-    // Save Group in the database
-    Grupo.create(grupo)
+    // Save Data in the database
+    Group.create(group)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Group."
+                message: err.message || "Some error occurred while creating the Data."
             });
         });
 };
@@ -39,7 +41,7 @@ exports.findAll = (req, res) => {
         }
     } : null;
 
-    Grupo.findAll({ where: condition })
+    Group.findAll({ where: condition })
         .then(data => {
             res.send({
                 status: true,
@@ -62,7 +64,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Grupo.findByPk(id)
+    Group.findByPk(id)
         .then(data => {
             res.send(data);
         })
@@ -77,7 +79,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Grupo.update(req.body, {
+    Group.update(req.body, {
             where: { id: id }
         })
         .then(num => {
@@ -102,7 +104,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Grupo.destroy({
+    Group.destroy({
             where: { id: id }
         })
         .then(num => {
@@ -125,7 +127,7 @@ exports.delete = (req, res) => {
 
 // Delete all Groups from the database.
 exports.deleteAll = (req, res) => {
-    Grupo.destroy({
+    Group.destroy({
             where: {},
             truncate: false
         })

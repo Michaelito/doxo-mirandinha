@@ -1,6 +1,7 @@
 const db = require("../models");
 const Category = db.category;
 const Op = db.Sequelize.Op;
+const { uuid } = require('uuidv4');
 
 // Create and Save a new Data
 exports.create = (req, res) => {
@@ -14,6 +15,7 @@ exports.create = (req, res) => {
 
     // Create a Data
     const category = {
+        uuid: uuid(),
         code: req.body.code,
         name: req.body.name        
     };

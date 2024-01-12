@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const http = require('http');
 const debug = require('debug')('nodestr:server');
-const { uuid } = require('uuidv4');
+
 
 const app = express();
 
@@ -41,7 +41,7 @@ db.sequelize.sync();
 
 // Load Routes
 require("./app/routes/api/v1/tutorial.routes")(app);
-require("./app/routes/api/v1/grupo.routes")(app);
+require("./app/routes/api/v1/group.routes")(app);
 require("./app/routes/api/v1/discount.routes")(app);
 require("./app/routes/api/v1/category.routes")(app);
 
