@@ -95,7 +95,7 @@ exports.update = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Grupo with id=" + id
+                message: "Error updating category with id=" + id
             });
         });
 };

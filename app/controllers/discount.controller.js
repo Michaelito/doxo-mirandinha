@@ -19,7 +19,7 @@ exports.findAll = (req, res) => {
                 status: true,
                 message: "The request has succeeded",
                 data: {
-                    grupo: data
+                    Discount: data
                 }
             }).status(200);
         })
