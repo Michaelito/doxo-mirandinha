@@ -1,7 +1,7 @@
 module.exports = app => {
 
     //controllers
-    const controller = require("../../../controllers/Data.controller.js");
+    const controller = require("../../../controllers/grupo.controller.js");
 
     var router = require("express").Router();
 
