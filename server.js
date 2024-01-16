@@ -45,6 +45,7 @@ require("./app/routes/api/v1/group.routes")(app);
 require("./app/routes/api/v1/discount.routes")(app);
 require("./app/routes/api/v1/category.routes")(app);
 require("./app/routes/api/v1/collection.routes")(app);
+require("./app/routes/api/v1/productMix.routes")(app);
 
 
 // set port, listen for requests
