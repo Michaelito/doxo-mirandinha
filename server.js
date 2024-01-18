@@ -48,6 +48,7 @@ require("./app/routes/api/v1/collection.routes")(app);
 require("./app/routes/api/v1/productMix.routes")(app);
 require("./app/routes/api/v1/salesCampaign.routes")(app);
 require("./app/routes/api/v1/paymentCondition.routes")(app);
+require("./app/routes/api/v1/promotionalDiscount.routes")(app);
 
 
 // set port, listen for requests
