@@ -25,5 +25,6 @@ db.discount = require("./discount.model.js")(sequelize, Sequelize);
 db.category = require("./category.model.js")(sequelize, Sequelize);
 db.collection = require("./collection.model.js")(sequelize, Sequelize);
 db.productMix = require("./productMix.model.js")(sequelize, Sequelize);
+db.salesCampaign = require("./salesCampaign.model.js")(sequelize, Sequelize);
 
 module.exports = db;
