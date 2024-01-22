@@ -1,17 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
-  const Model = sequelize.define("groups", {
+  const Model = sequelize.define("categorys", {
     uuid: {
       type: Sequelize.STRING
     },
-    name: {
-      type: Sequelize.STRING
+    code: {
+      type: Sequelize.INTEGER
     },
-    description: {
+    name: {
       type: Sequelize.STRING
     },
     status: {
       type: Sequelize.BOOLEAN
     }
+   
   });
 
   return Model;
