@@ -127,22 +127,6 @@ exports.delete = async (req, res) => {
 };
 
 // Delete all Datas from the database.
-exports.deleteAll = (req, res) => {
-  Category.destroy({
-    where: {},
-    truncate: false
-  })
-    .then(nums => {
-      res.send({ message: `${nums} Data were deleted successfully!` });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while removing all Datas."
-      });
-    });
-};
-
-// Delete all Datas from the database.
 exports.deleteAll = async (req, res) => {
   try {
     await Collection.destroy({

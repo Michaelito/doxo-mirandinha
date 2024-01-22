@@ -60,10 +60,10 @@ exports.create = (req, res) => {
     // Create a Data
     const discount = {
         uuid: uuid(),
-        code: req.body.coce,
-        name: req.body.name,        
-        discount: req.body.discount,        
-        category_id: req.body.category_id        
+        code: req.body.code,
+        name: req.body.name,
+        discount: req.body.discount,
+        category_id: req.body.category_id
     };
 
     // Save Data in the database
@@ -83,8 +83,8 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Discount.update(req.body, {
-            where: { id: id }
-        })
+        where: { id: id }
+    })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -108,8 +108,8 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Discount.destroy({
-            where: { id: id }
-        })
+        where: { id: id }
+    })
         .then(num => {
             if (num == 1) {
                 res.send({
