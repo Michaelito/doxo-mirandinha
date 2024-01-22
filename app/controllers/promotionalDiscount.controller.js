@@ -52,7 +52,7 @@ exports.create = async (req, res) => {
         // Validate request
         if (!req.body.product) {
             return res.status(400).send({
-                message: "Content Name can not be empty!"
+                message: "Content Product can not be empty!"
             });
         }
 
