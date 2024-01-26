@@ -28,7 +28,7 @@ db.productMix = require("./productMix.model.js")(sequelize, Sequelize);
 db.salesCampaign = require("./salesCampaign.model.js")(sequelize, Sequelize);
 db.paymentCondition = require("./paymentCondition.model")(sequelize, Sequelize);
 db.promotionalDiscount = require("./promotionalDiscount.model")(sequelize, Sequelize);
-db.product = require("./product.model.js")(sequelize, Sequelize);
-db.openBoxPeriod = require("./openBoxPeriod.model")(sequelize, Sequelize);
+//db.product = require("./product.model.js")(sequelize, Sequelize);
+//db.openBoxPeriod = require("./openBoxPeriod.model")(sequelize, Sequelize);
 
 module.exports = db;
