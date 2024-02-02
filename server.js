@@ -36,12 +36,22 @@ const db = require("./app/models");
 db.sequelize.sync();
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
+//     console.log("Drop and re-sync db.");
 // });
 
 // Load Routes
 require("./app/routes/api/v1/tutorial.routes")(app);
-require("./app/routes/api/v1/grupo.routes")(app);
+require("./app/routes/api/v1/group.routes")(app);
+require("./app/routes/api/v1/discount.routes")(app);
+require("./app/routes/api/v1/category.routes")(app);
+require("./app/routes/api/v1/collection.routes")(app);
+require("./app/routes/api/v1/productMix.routes")(app);
+require("./app/routes/api/v1/salesCampaign.routes")(app);
+require("./app/routes/api/v1/paymentCondition.routes")(app);
+require("./app/routes/api/v1/promotionalDiscount.routes")(app);
+require("./app/routes/api/v1/card.routes")(app);
+require("./app/routes/api/v1/paymentMethod.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

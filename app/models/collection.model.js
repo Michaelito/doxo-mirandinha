@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
-  const Model = sequelize.define("grupos", {
+  const Model = sequelize.define("collections", {
     uuid: {
       type: Sequelize.STRING
     },
-    name: {
+    code: {
       type: Sequelize.STRING
     },
     description: {
@@ -11,13 +11,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     status: {
       type: Sequelize.BOOLEAN
-    },
-  
-    deletedAt: {
-      type: Sequelize.DATE,
-      allowNull: true,
-      defaultValue: null,
-    },
+    }
+
   });
 
   return Model;
