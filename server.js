@@ -1,4 +1,6 @@
 const express = require("express");
+const jwt = require('jsonwebtoken');
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const http = require('http');
@@ -39,9 +41,84 @@ db.sequelize.sync();
 //     console.log("Drop and re-sync db.");
 // });
 
+const secretKey = '123456789'
+const tokensBlacklist = ['123', '1234']
+
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+
+    console.log(token)
+
+    if (!token) {
+        return res.status(403).json({ message: 'Token não fornecido.' });
+    }
+
+    // if (tokensBlacklist.includes(token)) {
+    //     return res.status(401).json({ message: 'Token inválido.' });
+    // }
+
+    // Verify token
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+        return res.status(401).json({ error: 'Failed to authenticate token' });
+        }
+        req.user = decoded;
+        next();
+    });
+};
+
+const routesPrivate = (req, res, next) => {
+    const token = req.headers['authorization'];
+
+    console.log(token)
+
+    if (!token) {
+        return res.status(403).json({ message: 'Token não fornecido.' });
+    }
+
+    if (tokensBlacklist.includes(token)) {
+        return res.status(401).json({ message: 'Token inválido blacklist.' });
+    }
+
+    // Verify token
+    if (token != secretKey) {
+        return res.status(401).json({ error: 'teste' });
+    }
+    
+    next();
+    
+};
+
+
+// Login route
+app.post('/login', (req, res) => {
+    // Mock user
+    const user = {
+      id: 1,
+      username: 'user'
+    };
+  
+    // Generate JWT token
+    const token = jwt.sign(user, secretKey, { expiresIn: '1h' });
+    res.json({ token });
+  });
+
+// simple route index || status
+app.get("/jwt", routesPrivate, (req, res) => {
+
+    res.status(200).send({
+        title: 'Welcome to API',
+        version: '1.0.0',
+    });
+});
+
+
+
+
+
 // Load Routes
 require("./app/routes/api/v1/tutorial.routes")(app);
-require("./app/routes/api/v1/group.routes")(app);
+require("./app/routes/api/v1/group.routes",)(app);
 require("./app/routes/api/v1/discount.routes")(app);
 require("./app/routes/api/v1/category.routes")(app);
 require("./app/routes/api/v1/collection.routes")(app);
