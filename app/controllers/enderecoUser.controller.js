@@ -2,7 +2,7 @@ const db = require("../models");
 const EnderecoUsers = db.enderecoUsers;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
-const axios = require('axios');
+const { axios } = require("axios");
 const objValidation = require('../validation/enderecoUsersValidation');
 
 
