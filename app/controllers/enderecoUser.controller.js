@@ -56,8 +56,8 @@ exports.create = async (req, res) => {
 
     try {
         // Validate request
-        const obj = objValidation(req.body);
-        res.send(obj);
+        // const obj = objValidation(req.body);
+        // res.send(obj);
 
         const cep = req.body.cep;
         const cepFormatted = cep.replace(/-/g, '');
@@ -65,16 +65,14 @@ exports.create = async (req, res) => {
         // Make HTTP GET request using Axios
         const response = await axios.get('https://viacep.com.br/ws/' + cepFormatted + '/json/');
 
-        // Parse JSON response using xml2js
+        // Parse JSON response
         const jsonResponse = response.data;
-        const logradouro_split = jsonResponse.logradouro.split(" ");
-        const logradouro = logradouro_split[0];
 
         const payload = {
             uuid: uuid(),
-            user_id: req.body.user_id,
+            user_id: 1,
             cep: req.body.cep,
-            logradouro: logradouro,
+            logradouro: jsonResponse.logradouro,
             numero: req.body.numero,
             bairro: jsonResponse.bairro,
             complemento: req.body.complemento,

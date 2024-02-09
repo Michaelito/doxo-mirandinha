@@ -2,11 +2,10 @@ const Joi = require('joi');
 
 module.exports = function (obj, next) {
 
-    console.log(obj)
-
     // Definindo um esquema para o objeto
     const schema = Joi.object({
-        cep: Joi.string().alphanum().min(3).max(30).required(),
+        cep: Joi.string().min(3).max(30).required(),
+        numero: Joi.string().required(),
         // Adicione mais campos e validações conforme necessário
     });
 
