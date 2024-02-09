@@ -45,5 +45,10 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+  Model.associate = (models) => {
+    Model.hasOne(models.DataUser,
+      { foreinKey: 'user_id', as: dataUsers });
+  };
+
   return Model;
 };
