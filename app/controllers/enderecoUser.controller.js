@@ -55,9 +55,9 @@ exports.findOne = (req, res) => {
 exports.create = async (req, res) => {
 
     try {
-        // Validate request
-        // const obj = objValidation(req.body);
-        // res.send(obj);
+        //Validate request
+        const obj = objValidation(req.body);
+        //res.send(obj);
 
         const cep = req.body.cep;
         const cepFormatted = cep.replace(/-/g, '');
@@ -75,7 +75,7 @@ exports.create = async (req, res) => {
             logradouro: jsonResponse.logradouro,
             numero: req.body.numero,
             bairro: jsonResponse.bairro,
-            complemento: req.body.complemento,
+            complemento: req.body?.complemento,
             cidade: jsonResponse.localidade,
             estado: jsonResponse.uf,
             pais: 'BR',
@@ -95,6 +95,7 @@ exports.create = async (req, res) => {
 
         // You can access specific elements of the parsed data like parsedData.elementName
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error:', error.message);
+        res.status(500).send(error.message)
     }
 };

@@ -116,9 +116,6 @@ app.get("/jwt", (req, res) => {
 // Load Routes
 require("./app/routes/api/v1/tutorial.routes")(app);
 require("./app/routes/api/v1/group.routes",)(app);
-
-
-
 require("./app/routes/api/v1/user.routes")(app);
 require("./app/routes/api/v1/enderecoUser.routes")(app);
 
