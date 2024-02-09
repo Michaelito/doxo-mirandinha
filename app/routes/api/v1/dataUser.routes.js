@@ -5,8 +5,8 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    // // Retrieve all controller
-    // router.get("/", controller.findAll);
+    // Retrieve all controller
+    router.get("/", controller.findAll);
 
     // // Retrieve a single data with id
     // router.get("/:id", controller.findOne);
