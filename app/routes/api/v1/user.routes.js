@@ -14,6 +14,12 @@ module.exports = app => {
     // Create a new data
     router.post("/", controller.create);
 
+    // Update a data with id
+    router.put("/:id", controller.update);
+
+    // Delete a data with id
+    router.delete("/:id", controller.delete);
+
     app.use('/api/v1/users', router);
 
 

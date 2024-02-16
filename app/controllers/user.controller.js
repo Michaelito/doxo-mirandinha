@@ -61,9 +61,30 @@ exports.findAll = (req, res) => {
 
 // Find a single data with an id
 exports.findOne = (req, res) => {
+    users.hasMany(datausers, {
+        foreignKey: 'id'
+    });
+
+    users.hasMany(address_users, {
+        foreignKey: 'id'
+    });
     const id = req.params.id;
 
-    User.findByPk(id)
+    users.findByPk(id, {
+        attributes: { exclude: ['password'] },
+        include: [
+            {
+                model: datausers,
+                required: false,
+                attributes: ['fullName', 'cpf', 'rg', 'birthDate']
+            },
+            {
+                model: address_users,
+                required: false,
+                attributes: ['cep', 'logradouro', 'numero', 'complemento', 'cidade', 'bairro', 'estado']
+            }
+        ]
+    })
         .then(data => {
             res.send(data);
         })
@@ -112,4 +133,57 @@ exports.create = (req, res) => {
                 message: err.message || "Some error occurred while creating data."
             });
         });
+};
+// Update User in database
+exports.update = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+
+        const num = await users.update(req.body, {
+            where: { id: id }
+        });
+
+
+        if (num == 1) {
+            res.send({
+                message: "Data was updated successfully."
+            });
+        } else {
+            res.send({
+                message: `Cannot update Data with id=${id}. Maybe DataUser was not found or req.body is empty!`
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({
+            message: "Error updating category with id=" + id
+        });
+    }
+};
+
+exports.delete = async (req, res) => {
+
+    const id = req.params.id;
+    try {
+
+        const num = await users.destroy({
+            where: { id: id }
+        })
+
+        if (num == 1) {
+            res.send({
+                message: "Data was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete Data with id=${id}. Maybe Data was not found!`
+            });
+        }
+
+    } catch (err) {
+        return res.status(500).send({
+            message: "Could not delete Data with id=" + id
+        });
+    };
 };
