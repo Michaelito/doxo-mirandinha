@@ -1,9 +1,9 @@
 const db = require("../models");
-const EnderecoUsers = db.enderecoUsers;
+const address_users = db.address_users;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
 const { axios } = require("axios");
-const objValidation = require('../validation/enderecoUsersValidation');
+const objValidation = require('../validation/address_users_validation');
 
 
 // Create and Save a new Tutorial
@@ -17,7 +17,7 @@ exports.findAll = (req, res) => {
         }
     } : null;
 
-    EnderecoUsers.findAll({ where: condition })
+    address_users.findAll({ where: condition })
         .then(data => {
             res.send({
                 status: true,
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    EnderecoUsers.findByPk(id)
+    address_users.findByPk(id)
         .then(data => {
             res.send(data);
         })
@@ -83,7 +83,7 @@ exports.create = async (req, res) => {
         };
 
         // Save Tutorial in the database
-        EnderecoUsers.create(payload)
+        address_users.create(payload)
             .then(data => {
                 res.send(data);
             })

@@ -22,7 +22,7 @@ db.sequelize = sequelize;
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.grupos = require("./grupo.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
-db.enderecoUsers = require("./enderecoUser.model.js")(sequelize, Sequelize);
-db.dataUsers = require("./dataUser.model.js")(sequelize, Sequelize);
+db.address_users = require("./address_users.model.js")(sequelize, Sequelize);
+db.data_users = require("./dataUser.model.js")(sequelize, Sequelize);
 
 module.exports = db;

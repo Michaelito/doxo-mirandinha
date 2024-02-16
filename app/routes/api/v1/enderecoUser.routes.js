@@ -1,7 +1,7 @@
 module.exports = app => {
 
     //controllers
-    const controller = require("../../../controllers/enderecoUser.controller.js");
+    const controller = require("../../../controllers/address_users.controller.js");
 
     var router = require("express").Router();
 
@@ -14,6 +14,6 @@ module.exports = app => {
     // Create a new data
     router.post("/", controller.create);
 
-    app.use('/api/v1/enderecoUsers', router);
+    app.use('/api/v1/address_users', router);
 
 };

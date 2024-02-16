@@ -1,5 +1,7 @@
+const { dataUsers } = require(".");
+
 module.exports = (sequelize, Sequelize) => {
-  const Model = sequelize.define('Users', {
+  const Users = sequelize.define('Users', {
     id: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -16,9 +18,18 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING(50),
     },
+    token: {
+      type: Sequelize.STRING(150),
+    },
+    refresh_token: {
+      type: Sequelize.STRING(150),
+    },
     profile: {
       type: Sequelize.STRING(50),
       comment: 'Admin: 1, B2B: 2, B2C: 3',
+    },
+    date_last_login: {
+      type: Sequelize.DATE,
     },
     status: {
       type: Sequelize.BOOLEAN,
@@ -34,21 +45,17 @@ module.exports = (sequelize, Sequelize) => {
     deletedAt: {
       type: Sequelize.DATE,
     },
-    createduserId: {
+    created_userid: {
       type: Sequelize.INTEGER,
     },
-    updateuserId: {
+    update_userid: {
       type: Sequelize.INTEGER,
     },
-    deleteduserId: {
+    deleted_userid: {
       type: Sequelize.INTEGER,
     },
   });
 
-  Model.associate = (models) => {
-    Model.hasOne(models.DataUser,
-      { foreinKey: 'user_id', as: dataUsers });
-  };
 
-  return Model;
+  return Users;
 };

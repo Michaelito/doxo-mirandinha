@@ -1,6 +1,6 @@
 module.exports = (Sequelize, DataTypes) => {
 
-  const Model = Sequelize.define('endereco_users', {
+  const address_users = Sequelize.define('address_users', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -61,5 +61,5 @@ module.exports = (Sequelize, DataTypes) => {
   });
 
 
-  return Model;
+  return address_users;
 };

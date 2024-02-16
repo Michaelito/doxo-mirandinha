@@ -1,5 +1,7 @@
 const db = require("../models");
-const User = db.users;
+const users = db.users;
+const datausers = db.data_users;
+const address_users = db.address_users;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
 
@@ -15,7 +17,30 @@ exports.findAll = (req, res) => {
         }
     } : null;
 
-    User.findAll({ where: condition })
+    users.hasMany(datausers, {
+        foreignKey: 'id'
+    });
+
+    users.hasMany(address_users, {
+        foreignKey: 'id'
+    });
+
+    users.findAll({
+        where: condition,
+        attributes: { exclude: ['password'] },
+        include: [
+            {
+                model: datausers,
+                required: false,
+                attributes: ['fullName', 'cpf', 'rg', 'birthDate']
+            },
+            {
+                model: address_users,
+                required: false,
+                attributes: ['cep', 'logradouro', 'numero', 'complemento', 'cidade', 'bairro', 'estado']
+            }
+        ]
+    })
         .then(data => {
             res.send({
                 status: true,

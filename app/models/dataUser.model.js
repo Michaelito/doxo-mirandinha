@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const DataUser = sequelize.define('DataUsers', {
+    const data_users = sequelize.define('data_users', {
         id: {
             type: Sequelize.INTEGER,
             allowNull: false,
@@ -38,10 +38,6 @@ module.exports = (sequelize, Sequelize) => {
         },
 
     });
-    DataUser.associate = (models) => {
-        DataUser.belongsTo(models.User,
-            { foreignKey: 'user_id', as: 'dataUsers' });
-    };
 
-    return DataUser;
+    return data_users;
 };
