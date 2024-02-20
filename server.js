@@ -117,7 +117,7 @@ app.get("/jwt", (req, res) => {
 require("./app/routes/api/v1/tutorial.routes")(app);
 require("./app/routes/api/v1/group.routes",)(app);
 require("./app/routes/api/v1/user.routes")(app);
-require("./app/routes/api/v1/enderecoUser.routes")(app);
+require("./app/routes/api/v1/address_users.routes")(app);
 require("./app/routes/api/v1/dataUser.routes")(app);
 
 // set port, listen for requests

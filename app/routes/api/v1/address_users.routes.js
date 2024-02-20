@@ -14,6 +14,14 @@ module.exports = app => {
     // Create a new data
     router.post("/", controller.create);
 
+    // Update a data with id
+    router.put("/:id", controller.update);
+
+    // Delete a single data with id
+    router.delete("/:id", controller.delete);
+
+
+
     app.use('/api/v1/address_users', router);
 
 };

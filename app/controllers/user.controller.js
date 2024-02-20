@@ -17,12 +17,12 @@ exports.findAll = (req, res) => {
         }
     } : null;
 
-    users.hasMany(datausers, {
-        foreignKey: 'id'
+    users.hasOne(datausers, {
+        foreignKey: 'user_id'
     });
 
-    users.hasMany(address_users, {
-        foreignKey: 'id'
+    users.hasOne(address_users, {
+        foreignKey: 'user_id'
     });
 
     users.findAll({
@@ -95,7 +95,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Create and Save a new Tutorial
+// Create and Save a new User
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.login) {
@@ -124,7 +124,7 @@ exports.create = (req, res) => {
     };
 
     // Save Tutorial in the database
-    User.create(payload)
+    users.create(payload)
         .then(data => {
             res.send(data);
         })

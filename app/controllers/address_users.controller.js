@@ -2,7 +2,7 @@ const db = require("../models");
 const address_users = db.address_users;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
-const { axios } = require("axios");
+const axios = require("axios");
 const objValidation = require('../validation/address_users_validation');
 
 
@@ -64,13 +64,13 @@ exports.create = async (req, res) => {
 
         // Make HTTP GET request using Axios
         const response = await axios.get('https://viacep.com.br/ws/' + cepFormatted + '/json/');
-
         // Parse JSON response
         const jsonResponse = response.data;
 
+
         const payload = {
             uuid: uuid(),
-            user_id: 1,
+            user_id: req.body.user_id,
             cep: req.body.cep,
             logradouro: jsonResponse.logradouro,
             numero: req.body.numero,
@@ -91,11 +91,67 @@ exports.create = async (req, res) => {
                 res.status(500).send({
                     message: err.message || "Some error occurred while creating data."
                 });
+                console.log(err);
             });
 
         // You can access specific elements of the parsed data like parsedData.elementName
     } catch (error) {
+        console.log(error);
         console.error('Error:', error.message);
         res.status(500).send(error.message)
     }
 };
+exports.delete = async (req, res) => {
+
+    const id = req.params.id;
+    try {
+
+        const num = await address_users.destroy({
+            where: { id: id }
+        })
+
+        if (num == 1) {
+            res.send({
+                message: "Data was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete Data with id=${id}. Maybe Data was not found!`
+            });
+        }
+
+    } catch (err) {
+        return res.status(500).send({
+            message: "Could not delete Data with id=" + id
+        });
+    };
+};
+
+// Update User in database
+exports.update = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+
+        const num = await address_users.update(req.body, {
+            where: { id: id }
+        });
+
+
+        if (num == 1) {
+            res.send({
+                message: "Data was updated successfully."
+            });
+        } else {
+            res.send({
+                message: `Cannot update Data with id=${id}. Maybe DataUser was not found or req.body is empty!`
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({
+            message: "Error updating category with id=" + id
+        });
+    }
+};
+
