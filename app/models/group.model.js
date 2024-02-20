@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Model = sequelize.define("grupos", {
+  const Model = sequelize.define("groups", {
     uuid: {
       type: Sequelize.STRING
     },
@@ -11,13 +11,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     status: {
       type: Sequelize.BOOLEAN
-    },
-  
-    deletedAt: {
-      type: Sequelize.DATE,
-      allowNull: true,
-      defaultValue: null,
-    },
+    }
   });
 
   return Model;

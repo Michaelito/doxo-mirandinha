@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const http = require('http');
 const debug = require('debug')('nodestr:server');
-const { uuid } = require('uuidv4');
+
 
 
 const app = express();
@@ -119,6 +119,14 @@ require("./app/routes/api/v1/group.routes",)(app);
 require("./app/routes/api/v1/user.routes")(app);
 require("./app/routes/api/v1/address_users.routes")(app);
 require("./app/routes/api/v1/dataUser.routes")(app);
+require("./app/routes/api/v1/group.routes")(app);
+require("./app/routes/api/v1/discount.routes")(app);
+require("./app/routes/api/v1/category.routes")(app);
+require("./app/routes/api/v1/collection.routes")(app);
+require("./app/routes/api/v1/productMix.routes")(app);
+require("./app/routes/api/v1/salesCampaign.routes")(app);
+require("./app/routes/api/v1/paymentCondition.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
