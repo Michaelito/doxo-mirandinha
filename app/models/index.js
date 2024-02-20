@@ -20,6 +20,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+db.grupos = require("./grupo.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
+db.address_users = require("./address_users.model.js")(sequelize, Sequelize);
+db.data_users = require("./data_user.model.js")(sequelize, Sequelize);
 db.grupos = require("./group.model.js")(sequelize, Sequelize);
 db.discount = require("./discount.model.js")(sequelize, Sequelize);
 db.category = require("./category.model.js")(sequelize, Sequelize);
