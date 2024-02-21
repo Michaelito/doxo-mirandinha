@@ -1,39 +1,30 @@
 module.exports = app => {
 
-    //controllers
-
-    const controller = require("../../../controllers/grupo.controller.js");
-
-    var router = require("express").Router();
-
-    // Retrieve all controller
-    router.get("/", controller.findAll);
-
-    app.use('/api/v1/grupo', router);
+  //controllers
 
   const controller = require("../../../controllers/group.controller.js");
 
-    var router = require("express").Router();
+  var router = require("express").Router();
 
-    // // Create a new Datas
-    router.post("/", controller.create);
+  // // Create a new Datas
+  router.post("/", controller.create);
 
-    // Retrieve all controller
-    router.get("/", controller.findAll);
+  // Retrieve all controller
+  router.get("/", controller.findAll);
 
-     // Retrieve a single Data with id
-     router.get("/:id", controller.findOne);
+  // Retrieve a single Data with id
+  router.get("/:id", controller.findOne);
 
-     // Update a Data with id
-    router.put("/:id", controller.update);
+  // Update a Data with id
+  router.put("/:id", controller.update);
 
-     // Delete a Data with id
-     router.delete("/:id", controller.delete);
+  // Delete a Data with id
+  router.delete("/:id", controller.delete);
 
-      // Delete all controller
-    router.delete("/", controller.deleteAll);
+  // Delete all controller
+  router.delete("/", controller.deleteAll);
 
-    app.use('/api/v1/group', router);
+  app.use('/api/v1/group', router);
 
 
 };
