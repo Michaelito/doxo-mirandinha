@@ -49,6 +49,16 @@ async function login(req, res,) {
             expiresIn: 300 // expires in 5min
 
         });
+
+
+
+        await user.update({ token: 'asdfas' });
+
+
+
+
+
+
         return res.json({ auth: true, token: token });
     }
     res.status(500).json({ message: 'Login inválido!' });
