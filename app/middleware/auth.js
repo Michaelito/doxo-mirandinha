@@ -49,15 +49,7 @@ async function login(req, res,) {
             expiresIn: 300 // expires in 5min
 
         });
-
-
-
-        await user.update({ token: 'asdfas' });
-
-
-
-
-
+        await user.update({ token: token });
 
         return res.json({ auth: true, token: token });
     }

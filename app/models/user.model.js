@@ -16,12 +16,12 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING(50),
     },
-    // token: {
-    //   type: Sequelize.STRING(150),
-    // },
-    // refresh_token: {
-    //   type: Sequelize.STRING(150),
-    // },
+    token: {
+      type: Sequelize.STRING(150),
+    },
+    refresh_token: {
+      type: Sequelize.STRING(150),
+    },
     profile: {
       type: Sequelize.STRING(50),
       comment: 'Admin: 1, B2B: 2, B2C: 3',
