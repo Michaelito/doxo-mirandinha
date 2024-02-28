@@ -6,7 +6,7 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    // Create a new Tutorial
+
     router.post("/login", auth.login);
     router.post("/logout", auth.logout);
 

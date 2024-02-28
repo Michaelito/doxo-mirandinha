@@ -1,3 +1,6 @@
+require("dotenv-safe").config();
+const auth = require('../../../middleware/auth.js');
+
 module.exports = app => {
 
     //controllers
@@ -6,7 +9,7 @@ module.exports = app => {
     var router = require("express").Router();
 
     // Retrieve all controller
-    router.get("/", controller.findAll);
+    router.get("/", auth.verifyRoute, controller.findAll);
 
     // Retrieve a single data with id
     router.get("/:id", controller.findOne);
